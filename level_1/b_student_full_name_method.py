@@ -19,7 +19,7 @@ class Student:
 
 if __name__ == '__main__':
     student = Student(name='Ivan', surname='Ivanov', faculty='Python Development', course='Learn Python')
-    student_info = student.get_full_name()
-    print(student_info)
+    student_full_name = student.get_full_name()
+    print(student_full_name)
 
 
