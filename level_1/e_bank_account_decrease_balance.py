@@ -17,7 +17,8 @@ class BankAccount:
         self.expense = expense
 
     def increase_balance(self) -> float:
-        return self.balance + self.income
+        self.balance = self.balance + self.income
+        return self.balance
     
     def decrease_balance(self) -> float:
         self.balance = self.balance - self.expense
@@ -29,4 +30,5 @@ class BankAccount:
 if __name__ == '__main__':
     client_account = BankAccount(owner_full_name='Alex', balance=10586.5, expense=8000)
     print(client_account.decrease_balance())
+    print(client_account.balance)
     print(client_account.decrease_balance())
