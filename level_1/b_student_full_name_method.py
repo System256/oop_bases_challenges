@@ -7,16 +7,19 @@
 
 
 class Student:
-    def __init__(self, name: str, surname: str, faculty: str, course: int):
+    def __init__(self, name: str, surname: str, faculty: str, course: int) -> None:
         self.name = name
         self.surname = surname
         self.faculty = faculty
         self.course = course
 
-    def get_full_name(self):
+    def get_full_name(self) -> str:
         return f"Student's full name: {self.surname}, {self.name}"
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    student = Student(name='Ivan', surname='Ivanov', faculty='Python Development', course='Learn Python')
+    student_full_name = student.get_full_name()
+    print(student_full_name)
+
 

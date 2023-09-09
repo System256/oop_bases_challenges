@@ -9,8 +9,17 @@
 
 
 class Product:
-    pass  # код писать тут
+    def __init__(self, name: str, description: str, price: float, weight: float) -> None:
+        self.name = name
+        self.description = description
+        self.price = price
+        self.weight = weight
+    
+    # Также можно через __repr__
+    def get_full_info(self) -> str:
+        return f"Информация о продукте: название - {self.name}, описание - {self.description}, цена - {self.price}, вес - {self.weight}"
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    product = Product(name='Картошка', description='Мытая, молодая', price=31.4, weight=1.3)
+    print(product.get_full_info())
