@@ -22,4 +22,4 @@ class User:
 if __name__ == '__main__':
     user1 = User(username='roman555', name='roman', user_id=1)
     print(user1.generate_short_user_description())
-    print(user1.make_username_capitalized('roman555'))
+    print(user1.make_username_capitalized())

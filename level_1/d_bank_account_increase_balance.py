@@ -14,13 +14,13 @@ class BankAccount:
         self.owner_full_name = owner_full_name
         self.balance = balance
 
-    def increase_balance(self, income: float) -> float:
-        self.balance += income
+    def increase_balance(self, amount: float) -> float:
+        self.balance += amount
         return self.balance
 
 
 if __name__ == '__main__':
     client_account = BankAccount(owner_full_name='Bob', balance=50000.9)
     print(client_account.balance)
-    print(client_account.increase_balance(income=6000))
+    print(client_account.increase_balance(amount=6000))
     print(client_account.balance)
