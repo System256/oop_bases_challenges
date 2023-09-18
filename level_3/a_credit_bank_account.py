@@ -11,7 +11,7 @@ from decimal import Decimal
 
 
 class BankAccount:
-    def __init__(self, owner_full_name: str, balance: Decimal = 0) -> None:
+    def __init__(self, owner_full_name: str, balance: Decimal = Decimal(0)) -> None:
         self.owner_full_name = owner_full_name
         self.balance = balance
 
@@ -26,7 +26,7 @@ class BankAccount:
     
 
 class CreditAccount(BankAccount):
-    def __init__(self, owner_full_name: str, balance: Decimal = 0) -> None:
+    def __init__(self, owner_full_name: str, balance: Decimal = Decimal(0)) -> None:
         super().__init__(owner_full_name, balance)
 
     def is_eligible_for_credit(self) -> bool:
