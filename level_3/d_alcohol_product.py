@@ -34,5 +34,5 @@ class AlcoholProduct(Product):
 
 
 if __name__ == '__main__':
-    alcohol_product = AlcoholProduct(title='beer', price=300, stock_quantity=12)
+    alcohol_product = AlcoholProduct(title='beer', price=Decimal(300.95), stock_quantity=12)
     print(alcohol_product.is_available())
