@@ -28,9 +28,7 @@ class Product:
 
 class AlcoholProduct(Product):
     def is_available(self) -> bool:
-        # С not думаю более наглядно, либо можно 5 > datetime.now().hour > 23
-        # Можно включительно 5 и 23 часа, тогда проставим <=, но в условии задачи не было
-        return super().is_available() and not (5 < datetime.now().hour < 23)
+        return super().is_available() and 5 > datetime.now().hour > 23
 
 
 if __name__ == '__main__':

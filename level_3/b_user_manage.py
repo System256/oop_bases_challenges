@@ -9,7 +9,6 @@
        У него должен быть свой уникальный метод ban_all_users, который будет удалять все юзернэймы из списка.
     3. Создайте экземпляры каждого из трех классов и у каждого экземпляра вызовите все возможные методы.
 """
-from typing import List
 
 
 class UserManager:
@@ -20,7 +19,7 @@ class UserManager:
         self.usernames.append(username)
         print(f'Пользователь {username} успешно добавлен.')
 
-    def get_users(self) -> List[str]:
+    def get_users(self) -> list[str]:
         return self.usernames
 
 
