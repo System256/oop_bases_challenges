@@ -14,19 +14,19 @@ class BankAccount:
         self.owner_full_name = owner_full_name
         self.balance = balance
 
-    def increase_balance(self, income: float) -> float:
-        self.balance += income
+    def increase_balance(self, amount: float) -> float:
+        self.balance += amount
         return self.balance
     
-    def decrease_balance(self, expense: float) -> float:
-        self.balance -= expense
-        if self.balance < 0:
+    def decrease_balance(self, amount: float) -> float:
+        if amount > self.balance:
             raise ValueError('Баланс не может быть отрицательным.')
+        self.balance -= amount
         return self.balance
 
 
 if __name__ == '__main__':
     client_account = BankAccount(owner_full_name='Alex', balance=10586.5)
-    print(client_account.decrease_balance(expense=8000))
+    print(client_account.decrease_balance(amount=8000))
     print(client_account.balance)
-    print(client_account.decrease_balance(expense=8000))
+    print(client_account.decrease_balance(amount=8000))
