@@ -37,7 +37,7 @@ class AdminManager(UserManager):
 
 class SuperAdminManager(AdminManager):
     def ban_all_users(self) -> None:
-        super().get_users().clear()
+        self.usernames.clear()
         print(f'Все пользователи успешно заблокрованы.')
 
 
@@ -69,5 +69,6 @@ if __name__ == '__main__':
     print(super_admin_manager.get_users())
     super_admin_manager.ban_username(username='Roman')
     super_admin_manager.ban_all_users()
+    print(super_admin_manager.get_users())
     
     print('-' * 60)

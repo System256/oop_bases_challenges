@@ -19,10 +19,9 @@ class BankAccount:
         self.balance += amount
 
     def decrease_balance(self, amount: Decimal) -> Decimal:
-        self.balance -= amount
-        if self.balance < 0:
+        if amount > self.balance:
             raise ValueError('Баланс не может быть отрицательным.')
-        return self.balance
+        self.balance -= amount
     
 
 class CreditAccount(BankAccount):
@@ -39,7 +38,7 @@ if __name__ == '__main__':
     client_account = BankAccount(owner_full_name='Bob', balance=Decimal(6000))
     client_account.increase_balance(amount=Decimal(5200))
     print(client_account.balance)
-    client_account.decrease_balance(amount=Decimal(100))
+    client_account.decrease_balance(amount=Decimal(20000))
     print(client_account.balance)
 
     print('-' * 60)
