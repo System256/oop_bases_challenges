@@ -28,8 +28,8 @@ class AdminManager(UserManager):
         super().__init__(username)
 
     def ban_username(self, username: str) -> None:
-        if username in super().get_users():
-            super().get_users().remove(username)
+        if username in self.usernames:
+            self.usernames.remove(username)
             print(f'Пользователь {username} успешно заблокрован.')
         else:
             print(f'Пользователя {username} не существует.')
