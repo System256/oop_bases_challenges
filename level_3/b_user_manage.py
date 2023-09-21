@@ -24,9 +24,6 @@ class UserManager:
 
 
 class AdminManager(UserManager):
-    def __init___(self, username: str) -> None:
-        super().__init__(username)
-
     def ban_username(self, username: str) -> None:
         if username in self.usernames:
             self.usernames.remove(username)
