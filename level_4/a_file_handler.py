@@ -14,24 +14,58 @@
 """
 import csv
 import json
+from typing import Any
 
 
 class FileHandler:
-    def __init__(self, filename):
+    def __init__(self, filename: str) -> None:
         self.filename = filename
 
-    def read(self):
-        with open(self.filename, 'r') as file:
-            return file.read()
+    def read(self) -> str:
+        try:
+            with open(self.filename, 'r') as file:
+                return file.read()
+        except FileNotFoundError:
+            return f"Запрашиваемый файл {self.filename} не найден"
 
 
 class JSONHandler(FileHandler):
-    pass  # код писать тут
-
-
+    def read(self) -> dict[str]:
+        try:
+            with open(self.filename, 'r') as file:
+                data = json.load(file)
+                return data                      
+        except FileNotFoundError:
+            return f"Запрашиваемый файл {self.filename} не найден"
+        except json.JSONDecodeError:
+            return f"Указанный файл {self.filename} не json"
+            
+        
 class CSVHandler(FileHandler):
-    pass  # код писать тут
+    def read(self) -> list[str]:
+        try:
+            with open(self.filename, 'r') as file:
+                data = csv.DictReader(file)
+                list_data = [row for row in data]
+                return list_data
+        except FileNotFoundError:
+            return f"Запрашиваемый файл {self.filename} не найден"
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    print('-' * 60)
+
+    file_txt = FileHandler(filename='level_4\\data\\text.txt')
+    print(file_txt.read())
+
+    print('-' * 60)
+
+    file_json = JSONHandler(filename='level_4\\data\\recipes.json')
+    print(file_json.read())
+
+    print('-' * 60)
+
+    file_csv = CSVHandler(filename='level_4\\data\\user_info.csv')
+    print(file_csv.read())
+
+    print('-' * 60)
