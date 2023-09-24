@@ -25,9 +25,6 @@ class BankAccount:
     
 
 class CreditAccount(BankAccount):
-    def __init__(self, owner_full_name: str, balance: Decimal = Decimal(0)) -> None:
-        super().__init__(owner_full_name, balance)
-
     def is_eligible_for_credit(self) -> bool:
         return self.balance > 1000
 
@@ -35,7 +32,7 @@ class CreditAccount(BankAccount):
 if __name__ == '__main__':
     print('-' * 60)
 
-    client_account = BankAccount(owner_full_name='Bob', balance=Decimal(6000))
+    client_account = BankAccount(owner_full_name='Bob', balance=Decimal(200000))
     client_account.increase_balance(amount=Decimal(5200))
     print(client_account.balance)
     client_account.decrease_balance(amount=Decimal(20000))
