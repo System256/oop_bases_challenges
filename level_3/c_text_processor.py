@@ -21,9 +21,6 @@ class TextProcessor:
 
 
 class AdvancedTextProcessor(TextProcessor):
-    def __init__(self, text: str) -> None:
-        super().__init__(text)
-
     def summarize(self) -> str:
         return f'{super().summarize()}, total number of words in the text: {len(self.text.split())}'
 
