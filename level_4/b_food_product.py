@@ -10,7 +10,7 @@
        меньше чем текущая дата - то is_available должен возвращать False. Используйте super() для этого.
     3. Создайте экземпляры каждого из двух классов и вызовите у них все доступные методы
 """
-from datetime import datetime, date
+from datetime import datetime
 
 
 class Product:

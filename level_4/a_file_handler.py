@@ -14,7 +14,8 @@
 """
 import csv
 import json
-from typing import Any
+import os
+from io import StringIO
 
 
 class FileHandler:
@@ -22,34 +23,23 @@ class FileHandler:
         self.filename = filename
 
     def read(self) -> str:
-        try:
+        if os.path.exists(self.filename):
             with open(self.filename, 'r') as file:
                 return file.read()
-        except FileNotFoundError:
-            return f"Запрашиваемый файл {self.filename} не найден"
+        return f"Запрашиваемый файл {self.filename} не найден"
 
 
 class JSONHandler(FileHandler):
     def read(self) -> dict[str]:
-        try:
-            with open(self.filename, 'r') as file:
-                data = json.load(file)
-                return data                      
-        except FileNotFoundError:
-            return f"Запрашиваемый файл {self.filename} не найден"
-        except json.JSONDecodeError:
-            return f"Указанный файл {self.filename} не json"
+        return json.loads(super().read())
             
         
 class CSVHandler(FileHandler):
     def read(self) -> list[str]:
-        try:
-            with open(self.filename, 'r') as file:
-                data = csv.DictReader(file)
-                list_data = [row for row in data]
-                return list_data
-        except FileNotFoundError:
-            return f"Запрашиваемый файл {self.filename} не найден"
+        str_csv = StringIO(super().read())
+        reader = csv.DictReader(str_csv)
+        data_list = [row for row in reader]
+        return data_list
 
 
 if __name__ == '__main__':
