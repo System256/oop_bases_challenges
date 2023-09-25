@@ -7,24 +7,41 @@
        в конце добавлялось слово Premium.
        Например: Product title: Avocado, price: 12 (Premium)'
     3. Создать экземпляр класс FoodProduct с ценой меньше 10 и вызвать у него метод get_product_info.
-    3. Создать экземпляр класс FoodProduct с ценой больше 10 и вызвать у него метод get_product_info.
+    4. Создать экземпляр класс FoodProduct с ценой больше 10 и вызвать у него метод get_product_info.
 """
+from decimal import Decimal
 
 
 class Product:
-    def __init__(self, title: str, price: float):
+    def __init__(self, title: str, price: Decimal) -> None:
         self.title = title
         self.price = price
 
-    def get_product_info(self):
+    def get_product_info(self) -> str:
         return f'Product title: {self.title}, price: {self.price}'
 
 
-class FoodProductMixin:
-    def is_premium_food(self):
-        return self.price > 10
+class FoodProductMixin(Product):
+    def is_premium_food(self) -> bool:
+        return self.price > Decimal(10)
+    
 
+class FoodProduct(FoodProductMixin, Product):
+    def get_product_info(self) -> str:
+        if super().is_premium_food():
+            return f'Product title: {self.title}, price: {self.price} (Premium)'
+        return super().get_product_info()
+    
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    print('-' * 60)
 
+    food_product_1 = FoodProduct(title='Orange', price=Decimal(8))
+    print(food_product_1.get_product_info())
+
+    print('-' * 60)
+
+    food_product_2 = FoodProduct(title='Orange', price=Decimal(12))
+    print(food_product_2.get_product_info())
+
+    print('-' * 60)
