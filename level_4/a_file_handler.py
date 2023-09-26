@@ -22,11 +22,11 @@ class FileHandler:
     def __init__(self, filename: str) -> None:
         self.filename = filename
 
-    def read(self) -> str:
-        if os.path.exists(self.filename):
-            with open(self.filename, 'r') as file:
-                return file.read()
-        return f"Запрашиваемый файл {self.filename} не найден"
+    def read(self) -> str | None:
+        if not os.path.exists(self.filename):
+            return None
+        with open(self.filename, 'r') as file:
+            return file.read()
 
 
 class JSONHandler(FileHandler):
@@ -38,7 +38,7 @@ class CSVHandler(FileHandler):
     def read(self) -> list[str]:
         str_csv = StringIO(super().read())
         reader = csv.DictReader(str_csv)
-        data_list = [row for row in reader]
+        data_list = list(reader)
         return data_list
 
 

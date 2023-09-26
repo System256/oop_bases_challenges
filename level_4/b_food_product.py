@@ -26,7 +26,7 @@ class Product:
 
 
 class FoodProduct(Product):
-    def __init__(self, title: str, quantity: int, expiration_date: str) -> None:
+    def __init__(self, title: str, quantity: int, expiration_date: datetime) -> None:
         super().__init__(title, quantity)
         self.expiration_date = expiration_date
 
