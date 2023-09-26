@@ -23,9 +23,7 @@ class Form:
 
 class AuthorizationFormMixin(Form):
     def valid_form(self) -> bool:
-        if super().valid_form() and self.username in USERNAMES_IN_DB:
-            return True
-        return False
+        return super().valid_form() and self.username in USERNAMES_IN_DB
 
 
 class AuthorizationForm(AuthorizationFormMixin, Form):
