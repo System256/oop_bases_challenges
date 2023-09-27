@@ -14,24 +14,48 @@
 """
 import csv
 import json
+import os
+from io import StringIO
 
 
 class FileHandler:
-    def __init__(self, filename):
+    def __init__(self, filename: str) -> None:
         self.filename = filename
 
-    def read(self):
+    def read(self) -> str | None:
+        if not os.path.exists(self.filename):
+            return None
         with open(self.filename, 'r') as file:
             return file.read()
 
 
 class JSONHandler(FileHandler):
-    pass  # код писать тут
-
-
+    def read(self) -> dict[str]:
+        return json.loads(super().read())
+            
+        
 class CSVHandler(FileHandler):
-    pass  # код писать тут
+    def read(self) -> list[str]:
+        str_csv = StringIO(super().read())
+        reader = csv.DictReader(str_csv)
+        data_list = list(reader)
+        return data_list
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    print('-' * 60)
+
+    file_txt = FileHandler(filename='level_4\\data\\text.txt')
+    print(file_txt.read())
+
+    print('-' * 60)
+
+    file_json = JSONHandler(filename='level_4\\data\\recipes.json')
+    print(file_json.read())
+
+    print('-' * 60)
+
+    file_csv = CSVHandler(filename='level_4\\data\\user_info.csv')
+    print(file_csv.read())
+
+    print('-' * 60)
