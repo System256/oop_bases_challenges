@@ -28,10 +28,10 @@ class FoodProductMixin(Product):
 
 class FoodProduct(FoodProductMixin, Product):
     def get_product_info(self) -> str:
-        premium = ''
+        suffix = ''
         if super().is_premium_food():
-            premium = ' (Premium)'
-        return super().get_product_info() + premium
+            suffix = ' (Premium)'
+        return super().get_product_info() + suffix
     
 
 if __name__ == '__main__':
