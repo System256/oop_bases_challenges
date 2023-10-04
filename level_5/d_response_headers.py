@@ -13,15 +13,15 @@
 
 
 class BaseResponse:
-    def __init__(self, content: str):
+    def __init__(self, content: str) -> None:
         self.content = content
 
-    def get_byte_content_length(self):
+    def get_byte_content_length(self) -> int:
         return len(self.content.encode('utf-8'))
 
 
 class BaseHeadersMixin:
-    def generate_base_headers(self):
+    def generate_base_headers(self) -> dict[str, str]:
         return {
             'Content-Type': 'application/x-www-form-urlencoded',
             'user-agent': (
@@ -30,11 +30,19 @@ class BaseHeadersMixin:
             ),
         }
 
-    def generate_headers(self):
+    def generate_headers(self) -> dict[str, str]:
         return self.generate_base_headers()
 
 
-# код писать тут
+class CustomResponse(BaseHeadersMixin, BaseResponse):
+    def generate_headers(self) -> dict[str, int | str]:
+        return super().generate_base_headers() | {
+            'Content-Length': super().get_byte_content_length(),
+        }
+
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    custom_response = CustomResponse(content='qwerty123')
+    print(custom_response.generate_headers())
+    print(custom_response.generate_base_headers())
+    print(custom_response.get_byte_content_length())
