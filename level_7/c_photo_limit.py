@@ -13,17 +13,24 @@
 class PhotoForm:
     max_photos_number = 10
 
-    def __init__(self, photo_urls: list[str]):
+    def __init__(self, photo_urls: list[str]) -> None:
         self.photo_urls = photo_urls
 
-    def validate_photos(self):
+    def validate_photos(self) -> ValueError:
         if len(self.photo_urls) > self.max_photos_number:
-            raise ValueError
+            raise ValueError(self.generate_photos_limit_message())
 
-
-def generate_photos_limit_message():
-    return  # код писать тут
+    @classmethod
+    def generate_photos_limit_message(self) -> str:
+        return f"Вы можете загрузить не более {self.max_photos_number} фотографий"
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    print('-' * 60)
+
+    print(PhotoForm.generate_photos_limit_message())
+
+    print('-' * 60)
+    
+    photo_form = PhotoForm(photo_urls=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    photo_form.validate_photos()
